@@ -1,4 +1,4 @@
-package br.com.zup.casadocodigo.config.validation;
+package br.com.zup.casadocodigo.shared.config.validation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -14,22 +14,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestControllerAdvice
-public class ErroValidacaoHandler {
+public class ErrorValidationHandler {
 
     @Autowired
     private MessageSource messageSource;
 
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public List<ErroFormularioDto> handle(MethodArgumentNotValidException exception) {
+    public List<ErrorFormDto> handle(MethodArgumentNotValidException exception) {
 
         List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
 
-        List<ErroFormularioDto> dto = new ArrayList<>();
+        List<ErrorFormDto> dto = new ArrayList<>();
         fieldErrors.forEach(e -> {
-            String mensagem = messageSource.getMessage(e, LocaleContextHolder.getLocale());
-            ErroFormularioDto erro = new ErroFormularioDto(e.getField(), mensagem);
-            dto.add(erro);
+            String message = messageSource.getMessage(e, LocaleContextHolder.getLocale());
+            ErrorFormDto error = new ErrorFormDto(e.getField(), message);
+            dto.add(error);
         });
         return dto;
     }
