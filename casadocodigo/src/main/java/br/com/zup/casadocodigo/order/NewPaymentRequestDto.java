@@ -26,7 +26,6 @@ public class NewPaymentRequestDto {
     @NotBlank
     private String surname;
     @NotBlank
-    @CPForCNPJ
     private String document;
     @NotBlank
     private String address;
@@ -37,7 +36,6 @@ public class NewPaymentRequestDto {
     @NotNull
     @ExistsId(domainClass = Country.class, fieldName = "id")
     private Long countryId;
-    @NotNull
     @ExistsId(domainClass = State.class, fieldName = "id")
     private Long stateId;
     @NotBlank

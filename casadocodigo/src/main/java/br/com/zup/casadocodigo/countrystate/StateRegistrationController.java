@@ -6,13 +6,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.validation.Valid;
+import java.net.URI;
 
 @RestController
-@RequestMapping("/states")
+@RequestMapping("/api/states")
 public class StateRegistrationController {
 
     @PersistenceContext
@@ -20,10 +22,13 @@ public class StateRegistrationController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity create(@RequestBody @Valid NewStateRequestDto request) {
+    public ResponseEntity create(@RequestBody @Valid NewStateRequestDto request, UriComponentsBuilder uriBuilder) {
         State state = request.toModel(entityManager);
         entityManager.persist(state);
-        return ResponseEntity.ok().build();
+        URI location = uriBuilder.path("/api/states/{id}")
+                .buildAndExpand(state.getId())
+                .toUri();
+        return ResponseEntity.created(location).build();
     }
 
 }

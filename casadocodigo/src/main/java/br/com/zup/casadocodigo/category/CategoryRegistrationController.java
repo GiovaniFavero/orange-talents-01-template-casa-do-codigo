@@ -1,5 +1,6 @@
 package br.com.zup.casadocodigo.category;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,18 +12,18 @@ import javax.persistence.PersistenceContext;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/categorias")
-public class CategoryController {
+@RequestMapping("/api/categories")
+public class CategoryRegistrationController {
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @PostMapping
     @Transactional
-    public CategoryResponseDto create(@RequestBody @Valid NewCategoryRequest newCategory) {
+    public ResponseEntity<CategoryResponseDto> create(@RequestBody @Valid NewCategoryRequestDto newCategory) {
         Category category = newCategory.toModel();
         entityManager.persist(category);
-        return new CategoryResponseDto(category);
+        return ResponseEntity.ok(new CategoryResponseDto(category));
     }
 
 }

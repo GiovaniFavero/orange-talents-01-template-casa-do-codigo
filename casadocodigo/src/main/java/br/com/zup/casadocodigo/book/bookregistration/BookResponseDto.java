@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 
 public class BookResponseDto {
 
+    private Long id;
     private String title;
     private String report; //resumo
     private String summary; //sumário
@@ -19,6 +20,7 @@ public class BookResponseDto {
     private CategoryDetailDto category;
 
     public BookResponseDto(Book book) {
+        this.id = book.getId();
         this.title = book.getTitle();
         this.report = book.getReport();
         this.summary = book.getSummary();
@@ -64,5 +66,9 @@ public class BookResponseDto {
 
     public CategoryDetailDto getCategory() {
         return category;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

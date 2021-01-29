@@ -1,6 +1,5 @@
 package br.com.zup.casadocodigo.order;
 
-import br.com.zup.casadocodigo.shared.config.validation.CheckCpfCnpjValidator;
 import br.com.zup.casadocodigo.shared.config.validation.StateBelongsToCountryValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +14,12 @@ public class ProceedCheckoutController {
 
     @Autowired
     private StateBelongsToCountryValidator stateBelongsToCountryValidator;
+    @Autowired
+    private CheckIfStateSelectedValidator checkIfStateSelectedValidator;
 
     @InitBinder
     public void init(WebDataBinder binder){
-        binder.addValidators(stateBelongsToCountryValidator);
+        binder.addValidators(stateBelongsToCountryValidator, new CheckCpfCnpjValidator(), checkIfStateSelectedValidator);
     }
 
     @PostMapping

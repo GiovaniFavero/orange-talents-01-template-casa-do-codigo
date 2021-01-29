@@ -14,7 +14,7 @@ import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/paises")
+@RequestMapping("/api/countries")
 public class CountryRegistrationController {
 
     @PersistenceContext
@@ -25,7 +25,7 @@ public class CountryRegistrationController {
     public ResponseEntity create (@RequestBody @Valid NewCountryRequestDto request, UriComponentsBuilder uriBuilder) {
         Country country = request.toModel();
         entityManager.persist(country);
-        URI location = uriBuilder.path("/paises/{id}")
+        URI location = uriBuilder.path("/api/countries/{id}")
                             .buildAndExpand(country.getId())
                             .toUri();
         return ResponseEntity.created(location).build();

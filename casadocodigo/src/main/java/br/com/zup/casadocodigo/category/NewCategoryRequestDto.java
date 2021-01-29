@@ -4,7 +4,7 @@ import br.com.zup.casadocodigo.shared.config.validation.annotations.UniqueValue;
 
 import javax.validation.constraints.NotBlank;
 
-public class NewCategoryRequest {
+public class NewCategoryRequestDto {
 
     @NotBlank
     @UniqueValue(domainClass = Category.class, fieldName = "name")

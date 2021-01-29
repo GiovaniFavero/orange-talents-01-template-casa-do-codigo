@@ -57,15 +57,4 @@ public class Author {
     public LocalDateTime getCreationDate() {
         return creationDate;
     }
-
-    @Override
-    public String toString() {
-        return "Author{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", description='" + description + '\'' +
-                ", creationDate=" + creationDate +
-                '}';
-    }
 }

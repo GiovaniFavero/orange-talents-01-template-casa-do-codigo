@@ -1,4 +1,4 @@
-package br.com.zup.casadocodigo.shared.config.validation;
+package br.com.zup.casadocodigo.order;
 
 import br.com.zup.casadocodigo.order.NewPaymentRequestDto;
 import org.springframework.validation.Errors;
@@ -19,7 +19,7 @@ public class CheckCpfCnpjValidator implements Validator {
         NewPaymentRequestDto request = (NewPaymentRequestDto) target;
         String document = request.getDocument();
         if(!request.isValidDocument()) {
-            errors.rejectValue("document", null, "Documento precisa ser CPF ou CNPJ!");
+            errors.rejectValue("document", null, "Documento precisa ser um CPF ou CNPJ válido!");
         }
     }
 }

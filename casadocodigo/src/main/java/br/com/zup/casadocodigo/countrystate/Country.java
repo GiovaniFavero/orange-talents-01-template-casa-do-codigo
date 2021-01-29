@@ -1,10 +1,8 @@
 package br.com.zup.casadocodigo.countrystate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -39,5 +37,12 @@ public class Country {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    public boolean hasStates(EntityManager entityManager){
+        Query query = entityManager.createQuery("select 1 from State s join s.country as c where c.id = :value");
+        query.setParameter("value", this.id);
+        List<?> list = query.getResultList();
+        return !list.isEmpty();
     }
 }

@@ -1,5 +1,6 @@
 package br.com.zup.casadocodigo.countrystate;
 
+import br.com.zup.casadocodigo.shared.config.validation.annotations.ExistsId;
 import br.com.zup.casadocodigo.shared.config.validation.annotations.UniqueValue;
 
 import javax.persistence.EntityManager;
@@ -12,6 +13,7 @@ public class NewStateRequestDto {
     @UniqueValue(domainClass = State.class, fieldName = "name")
     private String name;
     @NotNull
+    @ExistsId(domainClass = Country.class, fieldName = "id")
     private Long countryId;
 
     public String getName() {

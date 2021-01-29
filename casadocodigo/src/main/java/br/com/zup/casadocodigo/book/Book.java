@@ -21,10 +21,12 @@ public class Book {
     @NotBlank
     private String title;
     @NotBlank
-    @Length(max = 500)
+    @Column(length = 500)
     private String report; //resumo
+    @Column(length = 4000)
     private String summary; //sumário
     @Min(20)
+    @NotNull
     private BigDecimal price;
     @Min(100)
     private int numberOfPages;

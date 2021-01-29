@@ -1,11 +1,8 @@
 package br.com.zup.casadocodigo.book.bookconsultation;
 
-import br.com.zup.casadocodigo.author.Author;
 import br.com.zup.casadocodigo.book.Book;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class BookDetailResponseDto {

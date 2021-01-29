@@ -1,9 +1,9 @@
 package br.com.zup.casadocodigo.book.bookregistration;
 
-import br.com.zup.casadocodigo.shared.config.validation.annotations.UniqueValue;
 import br.com.zup.casadocodigo.author.Author;
 import br.com.zup.casadocodigo.book.Book;
 import br.com.zup.casadocodigo.category.Category;
+import br.com.zup.casadocodigo.shared.config.validation.annotations.UniqueValue;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.util.Assert;
@@ -26,6 +26,7 @@ public class NewBookRequestDto {
     private String report; //resumo
     private String summary; //sumário
     @Min(20)
+    @NotNull
     private BigDecimal price;
     @Min(100)
     private int numberOfPages;
@@ -68,11 +69,11 @@ public class NewBookRequestDto {
         return publicationDate;
     }
 
-    public Long getCategory() {
+    public Long getCategoryId() {
         return categoryId;
     }
 
-    public Long getAuthor() {
+    public Long getAuthorId() {
         return authorId;
     }
 

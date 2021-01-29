@@ -9,14 +9,14 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/livros")
+@RequestMapping("/api/books")
 public class BookConsultationController {
 
     @Autowired
     private BookRepository bookRepository;
 
     @GetMapping
-    public List<BookSummaryDto> listAll(Long id) {
+    public List<BookSummaryDto> listAll() {
         List<BookSummaryDto> books = bookRepository.findAllBooks();
         return books;
     }
